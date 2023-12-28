@@ -3,14 +3,20 @@
 </div>
 <div align="center">
 
-# Quantumix
+# Quantumix Client
 
 </div>
-启动Quantumix：
 
-```sh
-python manage.py runserver 0.0.0.0:80
-```
+基于 Rust Tauri + Vite + Vue3 + TypeScript 实现的 Quantumix 客户端，目前正处于开发状态。
+
+## TODO
+
+1. 实现主界面前端UI Assignee: 宅爷
+2. 实现Project前端UI Assignee: 宅爷
+3. 实现Todo、Task前端UI Assignee: 宅爷
+4. 实现项目后端API
+5. 实现Task后端API
+6. 实现Todo后端API
 
 ## 版权声明
 
