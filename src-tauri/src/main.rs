@@ -6,7 +6,7 @@ pub mod api {
 }
 pub mod exceptions;
 
-use api::account::{login, session};
+use api::account::{account, login, session};
 use serde_json::json;
 
 #[tauri::command]
@@ -31,9 +31,18 @@ async fn session_alive(server: &str, sessionkey: &str) -> Result<String, ()> {
     }
 }
 
+#[tauri::command]
+async fn account_handler(server: &str, sessionkey: &str) -> Result<String, ()> {
+    Ok(account(server, sessionkey).await.unwrap().to_string())
+}
+
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![login_handler, session_alive])
+        .invoke_handler(tauri::generate_handler![
+            login_handler,
+            session_alive,
+            account_handler
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

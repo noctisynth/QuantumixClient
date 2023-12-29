@@ -7,6 +7,8 @@ pub enum QuantumixException {
     AuthenticationFailed { identity: String, password: String },
     #[error("向服务端发起请求失败: {error:?}, 这可能是服务端遭到网络攻击")]
     ConnectionError { error: OblivionException },
-    #[error("捕获到了不符合预期格式的数据: {detail},  这可能是由于您遭到了网络劫持, 必要时建议紧急避难")]
+    #[error(
+        "捕获到了不符合预期格式的数据: {detail},  这可能是由于您遭到了网络劫持, 必要时建议紧急避难"
+    )]
     BadResponse { detail: String },
 }

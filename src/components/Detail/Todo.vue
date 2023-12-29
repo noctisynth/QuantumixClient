@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 defineProps({
     title: {
         type: String,
@@ -10,10 +10,10 @@ defineProps({
     }
 });
 // 调用后端接口加载任务列表
-const taskList = [
+const todoList = [
     {
-        "Table": "Task",
-        "Id": "task123",
+        "Table": "Todo",
+        "Id": "todo123",
         "ProjectID": 12345,
         "UserID": "user1",
         "Name": "测试任务",
@@ -29,8 +29,8 @@ const taskList = [
         "UpdatedAt": "2022-01-01T00:00:00"
     },
     {
-        "Table": "Task",
-        "Id": "task123",
+        "Table": "Todo",
+        "Id": "todo123",
         "ProjectID": 12345,
         "UserID": "user2",
         "Name": "测试任务测试任务测试任务",
@@ -46,8 +46,8 @@ const taskList = [
         "UpdatedAt": "2022-01-01T00:00:00"
     },
     {
-        "Table": "Task",
-        "Id": "task123",
+        "Table": "Todo",
+        "Id": "todo123",
         "ProjectID": 12345,
         "UserID": "user1",
         "Name": "测试任务",
@@ -63,8 +63,8 @@ const taskList = [
         "UpdatedAt": "2022-01-01T00:00:00"
     },
     {
-        "Table": "Task",
-        "Id": "task123",
+        "Table": "Todo",
+        "Id": "todo123",
         "ProjectID": 12345,
         "UserID": "user2",
         "Name": "测试任务测试任务测试任务",
@@ -93,79 +93,49 @@ function clickListmain(e) {
     div.parentNode.classList.toggle('expand');
 }
 
-function taskAccept(e) {
-    console.log("接受任务");
-    // 获取任务id
-    var taskId = e.target.parentNode.parentNode.parentNode.id;
-    // // 发送请求
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("POST", "/api/task/accept", true);
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.onreadystatechange = function () {
-    //     if (xhr.readyState === 4 && xhr.status === 200) {
-    //         var response = JSON.parse(xhr.responseText);
-    //         if (response.code === 200) {
-    //             console.log("任务接受成功");
-    //         } else {
-    //             console.log("任务接受失败");
-    //         }
-    //     }
-    // };
-    // xhr.send(JSON.stringify({ taskId: taskId }));
+function getUserImage(uid) {
+    // 获取用户头像
+    return "src/components/userImage/" + uid + ".jpg";
 }
-function taskAbort(e) {
-    console.log("放弃任务");
-    // 获取任务id
-    var taskId = e.target.parentNode.parentNode.parentNode.id;
-    // // 发送请求
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("POST", "/api/task/abort", true);
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.onreadystatechange = function () {
-    //     if (xhr.readyState === 4 && xhr.status === 200) {
-    //         var response = JSON.parse(xhr.responseText);
-    //         if (response.code === 200) {
-    //             console.log("任务放弃成功");
-    //         } else {
-    //             console.log("任务放弃失败");
-    //         }
-    //     }
-    // };
-    // xhr.send(JSON.stringify({ taskId: taskId }));
+function getUserName(uid) {
+    // 获取用户昵称
+    return "用户" + uid;
 }
+
 </script>
 
 
 <template>
     <div class="mainContent" :class="title" :color="color">
         <h2>{{ title }}</h2>
-        <div class="task" v-for="task in taskList" :id="task.Id">
+        <div class="todo" v-for="todo in todoList" :id="todo.Id">
             <div class="listmain" @click="clickListmain">
                 <div class="listmainCont">
-                    <div class="title">{{task.Name}}</div>
-                    <div class="cont">{{ task.Content }}</div>
+                    <div class="title">{{ todo.Name }}</div>
+                    <div class="cont">{{ todo.Content }}</div>
                 </div>
                 <div class="listmainCont">
                     <div class="title">开始时间</div>
-                    <div class="cont">{{ task.StartLine }}</div>
+                    <div class="cont">{{ todo.StartLine }}</div>
                 </div>
                 <div class="listmainCont">
                     <div class="title">结束时间</div>
-                    <div class="cont">{{ task.EndLine }}</div>
+                    <div class="cont">{{ todo.EndLine }}</div>
+                </div>
+                <div class="listmainCont userImage">
+                    <img :src="getUserImage(todo.UserID)" alt="用户头像">
+                    <div class="title">用户</div>
+                    <div class="cont">{{ getUserName(todo.UserID) }}</div>
                 </div>
             </div>
             <div class="listmore">
                 <div class="listmoreCont">
                     <div class="title">介绍</div>
-                    <div class="cont">{{ task.Description }}</div>
+                    <div class="cont">{{ todo.Description }}</div>
                 </div>
                 <div class="listmoreCont">
                     <div class="title">ID</div>
-                    <div class="cont">{{ task.Id }}</div>
-                </div>
-                <div class="listmoreButton">
-                    <button class="taskAccept" @click="taskAccept">接受</button>
-                    <button class="taskAbort" @click="taskAbort">放弃</button>
+                    <div class="cont">{{ todo.Id }}</div>
                 </div>
             </div>
         </div>
@@ -189,8 +159,8 @@ function taskAbort(e) {
     font-weight: bolder;
 }
 
-/* ————————task———————— */
-.task {
+/* ————————todo———————— */
+.todo {
     margin: 10px 0;
 }
 
@@ -244,5 +214,16 @@ function taskAbort(e) {
     float: right;
     margin-bottom: 10px;
     padding: 5px 0;
+}
+
+/* 用户头像 */
+.userImage img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid;
+    display: block;
+    float: left;
+    margin-right: 10px;
 }
 </style>
