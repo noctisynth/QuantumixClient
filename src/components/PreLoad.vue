@@ -21,6 +21,7 @@ const fetchData = async () => {
         } else {
             error.value = callback["error"];
             await new Promise(resolve => setTimeout(resolve, 20000));
+            sessionAlive = false;
         }
     } else {
         sessionAlive = false;
