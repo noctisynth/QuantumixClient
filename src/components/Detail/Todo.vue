@@ -9,6 +9,7 @@ defineProps({
         required: true
     }
 });
+
 // 调用后端接口加载任务列表
 const todoList = [
     {
@@ -80,7 +81,8 @@ const todoList = [
         "UpdatedAt": "2022-01-01T00:00:00"
     }
 ];
-function clickListmain(e) {
+
+function clickListmain(e: any) {
     // 展开元素
     var div;
     if (e.target.tagName === 'DIV' && e.target.classList.contains('listmain')) {
@@ -93,15 +95,15 @@ function clickListmain(e) {
     div.parentNode.classList.toggle('expand');
 }
 
-function getUserImage(uid) {
-    // 获取用户头像
-    return "src/components/userImage/" + uid + ".jpg";
-}
-function getUserName(uid) {
-    // 获取用户昵称
-    return "用户" + uid;
-}
+// function getUserImage(uid: string) {
+//     // 获取用户头像
+//     return "src/components/userImage/" + uid + ".jpg";
+// }
 
+// function getUserName(uid: string) {
+//     // 获取用户昵称
+//     return "用户" + uid;
+// }
 </script>
 
 
@@ -123,9 +125,9 @@ function getUserName(uid) {
                     <div class="cont">{{ todo.EndLine }}</div>
                 </div>
                 <div class="listmainCont userImage">
-                    <img :src="getUserImage(todo.UserID)" alt="用户头像">
+                    <!-- <img :src="getUserImage(todo.UserID)" alt="用户头像"> -->
                     <div class="title">用户</div>
-                    <div class="cont">{{ getUserName(todo.UserID) }}</div>
+                    <!-- <div class="cont">{{ getUserName(todo.UserID) }}</div> -->
                 </div>
             </div>
             <div class="listmore">
