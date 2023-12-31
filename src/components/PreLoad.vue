@@ -9,7 +9,6 @@ const error = ref("");
 
 const fetchData = async () => {
     info.value = "登录中...";
-    let sessionAlive: boolean = false;
     let callback: { status: boolean; is_alive: boolean; error: string };
 
     if (localStorage.getItem("session_key") != null && localStorage.getItem("server") != null) {
@@ -17,23 +16,25 @@ const fetchData = async () => {
             await invoke("session_alive", { server: localStorage.getItem("server"), sessionkey: localStorage.getItem("session_key") })
         );
         if (callback.status) {
-            sessionAlive = callback.is_alive;
+            if (!callback.is_alive) {
+                info.value = "";
+                error.value = "登录验证失败，请重新登陆！";
+                localStorage.removeItem("session_key");
+                localStorage.removeItem("isLoggedIn");
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                return false;
+            } else {
+                return true;
+            }
         } else {
+            info.value = "";
             error.value = callback["error"];
-            await new Promise(resolve => setTimeout(resolve, 20000));
-            sessionAlive = false;
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            return false;
         }
     } else {
-        sessionAlive = false;
+        return false;
     };
-
-    if (!sessionAlive) {
-        error.value = "登录验证失败，请重新登陆！";
-        localStorage.removeItem("session_key");
-        localStorage.removeItem("isLoggedIn");
-        await new Promise(resolve => setTimeout(resolve, 2000));
-    }
-    return sessionAlive;
 };
 
 fetchData().then((sessionAlive) => {

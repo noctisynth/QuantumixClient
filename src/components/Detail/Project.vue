@@ -9,6 +9,15 @@ defineProps({
         required: true
     }
 });
+
+function taskAccept() {
+
+}
+
+function taskAbort() {
+
+}
+
 // 调用后端接口加载任务列表
 const projectList = [
     {
@@ -158,7 +167,7 @@ const projectList = [
         ]
     }
 ]
-function clickListmain(e) {
+function clickListmain(e: any) {
     // 展开元素
     var div;
     if (e.target.tagName === 'DIV' && e.target.classList.contains('listmain')) {
@@ -171,11 +180,12 @@ function clickListmain(e) {
     div.parentNode.classList.toggle('expand');
 }
 
-function getUserImage(uid) {
+function getUserImage(uid: string) {
     // 获取用户头像
     return "src/components/userImage/" + uid + ".jpg";
 }
-function getUserName(uid) {
+
+function getUserName(uid: string) {
     // 获取用户昵称
     return "用户" + uid;
 }
@@ -186,7 +196,7 @@ function getUserName(uid) {
 <template>
     <div class="mainContent" :class="title" :color="color">
         <h2>{{ title }}</h2>
-        <div class="project" v-for="p in projectList" :id="projectId">
+        <div class="project" v-for="p in projectList" :id="p.projectId">
             <h3>{{ p.title }}</h3>
             <p v-for="content in p.content">{{ content }}</p>
             <div class="projectDark">

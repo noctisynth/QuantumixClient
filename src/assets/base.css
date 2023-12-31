@@ -1,224 +1,224 @@
 :root {
-  --c-background: #060708;
-  --c-text: #9FA8DA;
-  --c-text-dark: #71779D;
+    --c-background: #060708;
+    --c-text: #9FA8DA;
+    --c-text-dark: #71779D;
 
-  --c-menu-background: #15171D;
-  --c-menu-background-hover: #222732;
-  --c-menu-logo: #ffffff;
+    --c-menu-background: #15171D;
+    --c-menu-background-hover: #222732;
+    --c-menu-logo: #ffffff;
 
-  --c-white: #ffffff;
-  --c-blue-light: #3393FF;
-  --c-blue-dark: #0F447F;
-  --c-yellow-light: #FFA633;
-  --c-yellow-dark: #5B380C;
-  --c-red-light: #E2318D;
-  --c-red-dark: #550A31;
+    --c-white: #ffffff;
+    --c-blue-light: #3393FF;
+    --c-blue-dark: #0F447F;
+    --c-yellow-light: #FFA633;
+    --c-yellow-dark: #5B380C;
+    --c-red-light: #E2318D;
+    --c-red-dark: #550A31;
 
-  --c-topbar-background: #191C24;
+    --c-topbar-background: #191C24;
 
-  --c-content-h2: #ffffff;
+    --c-content-h2: #ffffff;
 
-  --c-listmain-background: #2E3644;
-  --c-listmain-background-hover: #282E3A;
-  --c-listmain-background-dark: #15171D;
-  --c-listmain-background-content: #191C24;
-  --c-listmainContTitle: #fff;
+    --c-listmain-background: #2E3644;
+    --c-listmain-background-hover: #282E3A;
+    --c-listmain-background-dark: #15171D;
+    --c-listmain-background-content: #191C24;
+    --c-listmainContTitle: #fff;
 }
 
 menu {
-  background-color: var(--c-menu-background);
+    background-color: var(--c-menu-background);
 }
 
 #menuOpen {
-  background-color: transparent;
-  color: var(--c-text);
+    background-color: transparent;
+    color: var(--c-text);
 }
 
 #menuOpen:hover {
-  background-color: var(--c-menu-background-hover);
+    background-color: var(--c-menu-background-hover);
 }
 
 menu h1 {
-  color: var(--c-menu-logo);
+    color: var(--c-menu-logo);
 }
 
 menu .menuButton[checked=true],
 menu .menuButton:hover {
-  border-left-width: 40px;
-  border-style: solid;
+    border-left-width: 40px;
+    border-style: solid;
 }
 
 menu .menuButton[checked=true] {
-  border-radius: 0 50px 50px 0;
-  margin-right: -20px;
+    border-radius: 0 50px 50px 0;
+    margin-right: -20px;
 }
 
 menu .menuButton:hover {
-  color: var(--c-menu-logo);
+    color: var(--c-menu-logo);
 }
 
 menu .menuButton {
-  border-width: 0px;
-  border-left-width: 10px;
-  border-style: solid;
-  transition: .3s all;
+    border-width: 0px;
+    border-left-width: 10px;
+    border-style: solid;
+    transition: .3s all;
 }
 
 menu [color=blue] {
-  background-color: var(--c-blue-dark);
-  color: var(--c-blue-light);
-  border-color: var(--c-blue-light);
+    background-color: var(--c-blue-dark);
+    color: var(--c-blue-light);
+    border-color: var(--c-blue-light);
 }
 
 menu [color=yellow] {
-  background-color: var(--c-yellow-dark);
-  color: var(--c-yellow-light);
-  border-color: var(--c-yellow-light);
+    background-color: var(--c-yellow-dark);
+    color: var(--c-yellow-light);
+    border-color: var(--c-yellow-light);
 }
 
 menu [color=red] {
-  background-color: var(--c-red-dark);
-  color: var(--c-red-light);
-  border-color: var(--c-red-light);
+    background-color: var(--c-red-dark);
+    color: var(--c-red-light);
+    border-color: var(--c-red-light);
 }
 
 .topbar {
-  background-color: var(--c-topbar-background);
+    background-color: var(--c-topbar-background);
 }
 
 /* ————————内容———————— */
 .mainContent h2 {
-  color: var(--c-content-h2);
-  border-left-width: 10px;
-  border-left-style: solid;
-  padding: 0 20px;
+    color: var(--c-content-h2);
+    border-left-width: 10px;
+    border-left-style: solid;
+    padding: 0 20px;
 }
 
 .mainContent[color=blue] h2 {
-  border-color: var(--c-blue-light);
+    border-color: var(--c-blue-light);
 }
 
 .mainContent[color=yellow] h2 {
-  border-color: var(--c-yellow-light);
+    border-color: var(--c-yellow-light);
 }
 
 .mainContent[color=red] h2 {
-  border-color: var(--c-red-light);
+    border-color: var(--c-red-light);
 }
 
 .listmain,
 .project {
-  background-color: var(--c-listmain-background);
+    background-color: var(--c-listmain-background);
 }
 
 .projectDark {
-  background-color: var(--c-listmain-background-dark);
+    background-color: var(--c-listmain-background-dark);
 }
 
 .listmain:hover {
-  background-color: var(--c-listmain-background-hover);
+    background-color: var(--c-listmain-background-hover);
 }
 
 .listmain .title {
-  color: var(--c-listmainContTitle);
+    color: var(--c-listmainContTitle);
 }
 
 .listmainCont:nth-child(1) .title {
-  border-left-width: 5px;
-  border-left-style: solid;
-  padding-left: 10px;
-  margin-left: -15px;
+    border-left-width: 5px;
+    border-left-style: solid;
+    padding-left: 10px;
+    margin-left: -15px;
 }
 
 .mainContent[color=blue] .listmainCont:nth-child(1) .title {
-  border-color: var(--c-blue-light);
+    border-color: var(--c-blue-light);
 }
 
 .mainContent[color=yellow] .listmainCont:nth-child(1) .title {
-  border-color: var(--c-yellow-light);
+    border-color: var(--c-yellow-light);
 }
 
 .mainContent[color=red] .listmainCont:nth-child(1) .title {
-  border-color: var(--c-red-light);
+    border-color: var(--c-red-light);
 }
 
 .listmore {
-  background-color: var(--c-listmain-background-content);
+    background-color: var(--c-listmain-background-content);
 }
 
 .listmore .cont {
-  color: var(--c-text-dark);
+    color: var(--c-text-dark);
 }
 
 .listmoreCont {
-  border-top: var(--c-listmain-background) 1px solid;
+    border-top: var(--c-listmain-background) 1px solid;
 }
 
 .listmoreCont:nth-child(1) {
-  border: none;
+    border: none;
 }
 
 .listmoreButton button {
-  border: none;
-  border-radius: 30px 0 0 30px;
-  font-weight: bolder;
+    border: none;
+    border-radius: 30px 0 0 30px;
+    font-weight: bolder;
 }
 
 .taskAccept {
-  background-color: var(--c-blue-dark);
-  color: var(--c-blue-light);
+    background-color: var(--c-blue-dark);
+    color: var(--c-blue-light);
 }
 
 .taskAccept:hover {
-  background-color: var(--c-blue-light);
-  color: var(--c-white);
+    background-color: var(--c-blue-light);
+    color: var(--c-white);
 }
 
 .taskAbort {
-  background-color: var(--c-red-dark);
-  color: var(--c-red-light);
+    background-color: var(--c-red-dark);
+    color: var(--c-red-light);
 }
 
 .taskAbort:hover {
-  background-color: var(--c-red-light);
-  color: var(--c-white);
+    background-color: var(--c-red-light);
+    color: var(--c-white);
 }
 
 .mainContent {
-  display: none;
+    display: none;
 }
 
 .mainContent[display=true] {
-  display: block;
+    display: block;
 }
 
 .project h3 {
-  color: var(--c-white);
+    color: var(--c-white);
 }
 
 h2 {
-  margin: 20px 0;
+    margin: 20px 0;
 }
 
 body {
-  color: var(--c-text);
-  background: var(--c-background);
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
-  font-size: 15px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    color: var(--c-text);
+    background: var(--c-background);
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        'Fira Sans',
+        'Droid Sans',
+        'Helvetica Neue',
+        sans-serif;
+    font-size: 15px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Task from './components/Detail/Task.vue';
-import Todo from './components/Detail/Todo.vue';
-import Project from './components/Detail/Project.vue';
+import Task from './Detail/Task.vue';
+import Todo from './Detail/Todo.vue';
+import Project from './Detail/Project.vue';
 
 const title = "Quantumix";
 const menulist = ref([
@@ -27,7 +27,7 @@ function clickMenuOpen() {
 
 <template>
     <menu id="menuDiv">
-        <img alt="Quantumix logo" class="logo" src="@/assets/logo.svg" />
+        <img alt="Quantumix logo" class="logo" src="../assets/logo.svg" />
         <h1>{{ title }}</h1>
         <ul>
             <li @click="clickMenu" class="menuButton" :color="menu.color" v-for="menu in menulist" :id="menu.id"
