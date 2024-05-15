@@ -92,20 +92,23 @@ pub async fn session(server: &str, session_key: &str) -> Result<bool, QuantumixE
 }
 
 pub async fn account(server: &str, session_key: &str) -> Result<Value, QuantumixException> {
-    let mut res = api::post(
+    let mut res = match api::post(
         format!("{server}/account").as_str(),
         json!({"session_key": session_key}),
         true,
     )
     .await
-    .unwrap();
-
-    Ok(match res.json() {
-        Ok(json) => json,
+    {
+        Ok(res) => res,
         Err(error) => {
-            return Err(QuantumixException::BadResponse {
-                detail: error.to_string(),
-            });
+            return Err(QuantumixException::ConnectionError { error: error });
         }
-    })
+    };
+
+    match res.json() {
+        Ok(json) => Ok(json),
+        Err(error) => Err(QuantumixException::BadResponse {
+            detail: error.to_string(),
+        }),
+    }
 }

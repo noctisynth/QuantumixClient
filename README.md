@@ -7,17 +7,8 @@
 
 </div>
 
-基于 Rust Tauri + Vite + Vue3 + TypeScript 实现的 Quantumix 客户端，目前正处于开发状态。
+## Deprecation Warning
 
-## TODO
+This project will be merged into the [Quantumix](https://github.com/noctisynth/Quantumix) project and this project will be deprecated. We will shift our focus to maintaining the Quantumix main project.
 
-1. 实现主界面前端UI Assignee: 宅爷
-2. 实现Project前端UI Assignee: 宅爷
-3. 实现Todo、Task前端UI Assignee: 宅爷
-4. 实现项目后端API
-5. 实现Task后端API
-6. 实现Todo后端API
-
-## 版权声明
-
-此项目以 Apache-2.0 协议开源, 使用代码时, 请注意遵照开源协议.
+Quantumix will continue to be maintained and updated with new features and bug fixes at [Quantumix](https://github.com/noctisynth/Quantumix). [Quantumix](https://github.com/noctisynth/Quantumix) is the server of this project at first and will be the full project in the future (Server and Client included).

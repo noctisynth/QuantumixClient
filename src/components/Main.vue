@@ -1,17 +1,46 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { invoke } from "@tauri-apps/api/tauri";
+// import Detail from "./Detail.vue";
+import Project from './Detail/Project.vue';
+
+const menulist = ref([
+    { id: "menu_project", title: 'Project', color: 'blue', checked: true },
+    { id: "menu_todo", title: 'Todo', color: 'yellow' },
+    { id: "menu_task", title: 'Task', color: 'red' }
+])
 
 const visible = ref(false);
-
+const nickname = ref("N/A");
+const favicon = ref("");
 
 const fetchData = async () => {
-};
+    let staged_nickname = localStorage.getItem("nickname");
+    if (staged_nickname != null) {
+        nickname.value = staged_nickname;
+    };
 
-fetchData().then(() => {
+    let callback: { status: boolean; username: string; nickname: string; favicon: string; error: string };
 
+    if (localStorage.getItem("session_key") != null && localStorage.getItem("server") != null) {
+        callback = JSON.parse(
+            await invoke("account_handler", { server: localStorage.getItem("server"), sessionkey: localStorage.getItem("session_key") })
+        );
+
+        if (callback.status) {
+            return callback
+        };
+    };
+    return null;
+}
+
+fetchData().then((callback) => {
+    if (callback !== null) {
+        nickname.value = callback.nickname;
+        favicon.value = callback.favicon;
+    }
 });
 </script>
-
 
 
 <template>
@@ -19,18 +48,16 @@ fetchData().then(() => {
         <Toolbar>
             <template #start>
                 <Button icon="pi pi-bars" class="mr-2" @click="visible = true"></Button>
-                <!-- <Button icon="pi pi-upload"></Button> -->
             </template>
 
             <template #center>
-                <!-- <span class="p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <InputText placeholder="Search" />
-                </span> -->
             </template>
 
             <template #end>
-                <!-- <SplitButton label="Save" icon="pi pi-check" :model="items"></SplitButton> -->
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <InputText placeholder="Search" />
+                </span>
             </template>
         </Toolbar>
     </div>
@@ -78,25 +105,18 @@ fetchData().then(() => {
                                     <li>
                                         <a v-ripple
                                             class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-users mr-2"></i>
-                                            <span class="font-medium">团队</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a v-ripple
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                             <i class="pi pi-comments mr-2"></i>
-                                            <span class="font-medium">Messages</span>
+                                            <span class="font-medium">消息</span>
                                             <span
                                                 class="inline-flex align-items-center justify-content-center ml-auto bg-primary border-circle"
-                                                style="min-width: 1.5rem; height: 1.5rem">3</span>
+                                                style="min-width: 1.5rem; height: 1.5rem">0</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a v-ripple
                                             class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                             <i class="pi pi-calendar mr-2"></i>
-                                            <span class="font-medium">Calendar</span>
+                                            <span class="font-medium">日历</span>
                                         </a>
                                     </li>
                                     <li>
@@ -114,15 +134,24 @@ fetchData().then(() => {
                         <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
                         <a v-ripple
                             class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                            <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
-                                shape="circle" />
-                            <span class="font-bold">苏向夜</span>
+                            <Avatar image="{{ favicon }}" shape="circle" />
+                            <span class="font-bold">{{ nickname }}</span>
                         </a>
                     </div>
                 </div>
             </template>
         </Sidebar>
     </div>
+
+    <main>
+        <Project :title="menulist[0].title" :color="menulist[0].color" :display="menulist[0].checked"></Project>
+    </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+main {
+    height: 100%;
+    position: static;
+    padding-bottom: 6%;
+}
+</style>

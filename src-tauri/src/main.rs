@@ -33,7 +33,14 @@ async fn session_alive(server: &str, sessionkey: &str) -> Result<String, ()> {
 
 #[tauri::command]
 async fn account_handler(server: &str, sessionkey: &str) -> Result<String, ()> {
-    Ok(account(server, sessionkey).await.unwrap().to_string())
+    match account(server, sessionkey).await {
+        Ok(mut json) => {
+            json["status"] = json!(true);
+            json["error"] = json!("null");
+            Ok(json.to_string())
+        }
+        Err(error) => Ok(json!({"status": false, "error": error.to_string()}).to_string()),
+    }
 }
 
 fn main() {
