@@ -4,22 +4,11 @@ import { invoke } from "@tauri-apps/api/tauri";
 // import Detail from "./Detail.vue";
 import Project from './Detail/Project.vue';
 
-
-
-
-
 const menulist = ref([
     { id: "menu_project", title: 'Project', color: 'blue', checked: true },
     { id: "menu_todo", title: 'Todo', color: 'yellow' },
     { id: "menu_task", title: 'Task', color: 'red' }
 ])
-
-
-
-
-
-
-
 
 const visible = ref(false);
 const nickname = ref("N/A");
